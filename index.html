@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kappa Boxes | Custom Gift Boxes, Bengaluru</title>
+<meta name="description" content="Kappa Boxes designs and prints custom corporate gifts, Christmas editions, gift hampers and annual boxes in Bengaluru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Italiana&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F7F3EC;--paper:#FFFDF9;--ink:#14201C;--emerald:#1E4D40;--emerald-2:#2E6A58;--deep:#0F2B24;
+  --gold:#B8925A;--gold-soft:#E2C48F;--sage:#CFDCCF;--blush:#EFD3C4;--mute:#6F6A60;--line:rgba(20,32,28,.12);
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.7,.2,1);--ease-io:cubic-bezier(.76,0,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--ivory)}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1;letter-spacing:-.015em}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+.wrap{max-width:1240px;margin:0 auto;padding:0 6vw}
+section{padding:130px 0;position:relative}
+
+/* Loader */
+.loader{position:fixed;inset:0;z-index:400;background:var(--emerald);display:flex;align-items:center;justify-content:center;transition:transform 1.2s var(--ease-io)}
+.loader .lw{font-family:var(--serif);font-size:clamp(44px,7vw,92px);font-weight:600;color:var(--ivory);overflow:hidden}
+.loader .lw span{display:inline-block;transform:translateY(110%);animation:lup 1.1s var(--ease) .15s forwards}
+.loader .lw em{display:inline-block;font-style:italic;color:var(--gold-soft);transform:translateY(110%);animation:lup 1.1s var(--ease) .32s forwards}
+.loader.done{transform:translateY(-100%)}
+@keyframes lup{to{transform:none}}
+
+/* Progress + cursor */
+#progress{position:fixed;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transform-origin:left;transform:scaleX(0);z-index:60}
+#cur,#ring{position:fixed;left:0;top:0;pointer-events:none;z-index:350;border-radius:50%;display:none;will-change:transform}
+#cur{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--gold)}
+#ring{width:46px;height:46px;margin:-23px 0 0 -23px;border:1px solid var(--gold);transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background .5s}
+#ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);opacity:0;transition:opacity .4s}
+body.hov #ring{width:66px;height:66px;margin:-33px 0 0 -33px;background:rgba(184,146,90,.14)}
+body.view #ring{width:104px;height:104px;margin:-52px 0 0 -52px;background:var(--emerald);border-color:var(--emerald)}
+body.view #ring span{opacity:1}
+@media (pointer:fine){#cur,#ring{display:block}body,a,button{cursor:none}}
+
+/* Nav */
+header{position:fixed;inset:0 0 auto 0;z-index:50;padding:24px 0;transition:background .6s,box-shadow .6s,padding .6s}
+header.solid{background:rgba(247,243,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav{display:flex;justify-content:space-between;align-items:center;max-width:1240px;margin:0 auto;padding:0 6vw;gap:20px}
+.logo{font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.logo span{color:var(--gold);font-style:italic;font-weight:500}
+.links{display:flex;gap:26px;list-style:none;align-items:center;flex-wrap:nowrap}
+.links a{font-size:14px;font-weight:500;position:relative;padding:4px 0;white-space:nowrap}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.links .pill{background:var(--emerald);color:var(--ivory);padding:11px 22px;border-radius:999px;transition:background .5s,transform .5s var(--ease)}
+.links .pill::after{display:none}
+.links .pill:hover{background:var(--gold);transform:translateY(-2px)}
+.menu{display:none;background:none;border:0;font-size:15px;font-weight:600;color:var(--emerald)}
+@media (max-width:1100px){.links{gap:18px}.links a{font-size:13px}}
+@media (max-width:900px){.links{display:none}.menu{display:block}}
+
+/* Buttons */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:17px 30px;border-radius:999px;font-size:14px;letter-spacing:.03em;font-weight:600;background:var(--emerald);color:var(--ivory);border:1px solid var(--emerald);overflow:hidden;isolation:isolate;transition:color .6s var(--ease),transform .6s var(--ease),border-color .6s;will-change:transform}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,var(--gold),var(--gold-soft));transform:translateX(-101%);transition:transform .7s var(--ease);z-index:-1}
+.btn:hover::before{transform:none}
+.btn:hover{color:var(--ink);border-color:var(--gold)}
+.btn .arr{display:inline-block;transition:transform .6s var(--ease)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn.ghost{background:transparent;color:var(--emerald);border-color:var(--emerald)}
+.btn.ghost::before{background:var(--emerald)}
+.btn.ghost:hover{color:var(--ivory);border-color:var(--emerald)}
+.btn.small{padding:10px 18px;font-size:13px}
+.btn.loading::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transform:translateX(-100%);animation:shine 1.2s infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+
+/* Word reveal */
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.wd>span{display:inline-block;transform:translateY(112%);transition:transform 1.3s var(--ease) var(--d,0s)}
+[data-words].in .wd>span{transform:none}
+.shine{font-style:italic;background:linear-gradient(90deg,var(--emerald),var(--gold),var(--emerald),var(--gold));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheenText 6s linear infinite}
+@keyframes sheenText{to{background-position:-300% 0}}
+.fade{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.fade.in{opacity:1;transform:none}
+
+/* Hero (no photos) */
+.hero{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:6vw;align-items:center;padding:150px 0 110px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;opacity:.7}
+.b1{width:520px;height:520px;background:var(--sage);left:-160px;top:-100px;animation:blob 18s ease-in-out infinite}
+.b2{width:460px;height:460px;background:var(--blush);right:-120px;bottom:-120px;animation:blob 22s ease-in-out infinite reverse}
+@keyframes blob{50%{transform:translate(60px,-40px) scale(1.12)}}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-size:clamp(54px,7vw,108px);margin:28px 0 30px}
+.hero h1 em{font-style:italic;color:var(--emerald)}
+.hero p.lead{font-size:18px;color:var(--mute);max-width:44ch}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:42px}
+.tags{display:flex;gap:26px;margin-top:46px;font-size:13px;color:var(--mute);flex-wrap:wrap}
+.tags span{display:flex;align-items:center;gap:8px}
+.tags span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.arch{position:relative;width:100%;aspect-ratio:4/5;border-radius:220px 220px 26px 26px;background:linear-gradient(170deg,var(--emerald-2),var(--deep));overflow:hidden;box-shadow:0 40px 80px -30px rgba(15,43,36,.55);display:grid;place-items:center;text-align:center;color:var(--ivory)}
+.arch::before{content:"";position:absolute;inset:16px;border:1px solid rgba(226,196,143,.45);border-radius:206px 206px 18px 18px;pointer-events:none}
+.arch::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(226,196,143,.22),transparent 55%);pointer-events:none}
+.arch-inner{position:relative;z-index:1;padding:30px}
+.badge{position:relative;width:200px;height:200px;margin:0 auto;display:grid;place-items:center}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+.badge text{font-family:var(--sans);font-size:11px;letter-spacing:.22em;fill:var(--gold-soft);font-weight:600}
+.badge b{font-family:var(--serif);font-size:64px;font-weight:600;font-style:italic;color:var(--ivory)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.arch .big-line{font-family:var(--serif);font-size:40px;font-style:italic;margin-top:30px;line-height:1.1;color:var(--ivory)}
+.arch .small-line{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-top:14px}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding-top:130px}.arch{max-width:380px;margin:20px auto 0}}
+
+/* Hero life */
+.arch-wrap{position:relative;width:100%;max-width:420px;justify-self:end;animation:float 7s ease-in-out infinite;transform-style:preserve-3d}
+@keyframes float{50%{transform:translateY(-16px)}}
+.arch{transition:transform .7s var(--ease);background:linear-gradient(160deg,var(--emerald-2),var(--deep),var(--emerald),var(--deep));background-size:300% 300%;animation:shiftBg 12s ease-in-out infinite}
+@keyframes shiftBg{50%{background-position:100% 100%}}
+.orbit{position:absolute;left:50%;top:50%;width:min(112%,480px);aspect-ratio:1;border:1px dashed rgba(184,146,90,.5);border-radius:50%;translate:-50% -50%;animation:spinR 26s linear infinite;pointer-events:none;z-index:0}
+.orbit i{position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold-soft)}
+@keyframes spinR{to{rotate:360deg}}
+.chip{position:absolute;z-index:3;background:rgba(255,253,249,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);padding:9px 15px;border-radius:999px;font-size:12px;letter-spacing:.06em;color:var(--emerald);font-weight:700;box-shadow:0 16px 34px -14px rgba(15,43,36,.4);animation:bob 6s ease-in-out infinite;white-space:nowrap}
+.c1{left:-10%;top:12%}
+.c2{right:-8%;top:46%;animation-delay:-2s}
+.c3{left:2%;bottom:4%;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.arch .big-line{animation:rise 1.4s var(--ease) .6s both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@media (max-width:900px){.arch-wrap{max-width:380px;margin:20px auto 0;justify-self:center}.chip{font-size:11px}}
+
+/* Interactive gift box hero */
+.gift{position:relative;width:min(400px,90vw);height:330px;justify-self:end;perspective:1200px;cursor:pointer;animation:float 7s ease-in-out infinite;outline:none;margin-bottom:30px}
+.gift:focus-visible{box-shadow:0 0 0 2px var(--gold);border-radius:12px}
+.gb-body{position:absolute;left:0;right:0;bottom:0;height:240px;border-radius:0 0 16px 16px;background:linear-gradient(160deg,var(--emerald-2),var(--deep));box-shadow:0 40px 70px -26px rgba(15,43,36,.6);overflow:hidden;z-index:1;transition:transform .8s var(--ease)}
+.gb-body::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:22px;margin-left:-11px;background:linear-gradient(90deg,var(--gold),var(--gold-soft),var(--gold))}
+.gb-body::after{content:"Kappa Boxes";position:absolute;left:0;right:0;bottom:26px;text-align:center;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ivory);opacity:.9}
+.gb-lid{position:absolute;left:-6px;right:-6px;top:28px;height:62px;border-radius:14px 14px 4px 4px;background:linear-gradient(160deg,#3B7A66,var(--emerald));transform-origin:50% 100%;transform:rotateX(0);transition:transform 1.2s var(--ease-io);box-shadow:0 14px 30px -12px rgba(15,43,36,.5);z-index:2}
+.gb-lid::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:22px;margin-left:-11px;background:linear-gradient(90deg,var(--gold),var(--gold-soft),var(--gold))}
+.gift:hover .gb-lid{transform:rotateX(-12deg)}
+.gift.open .gb-lid{transform:rotateX(-110deg)}
+.gb-glow{position:absolute;left:0;right:0;top:20px;height:170px;background:radial-gradient(closest-side,rgba(226,196,143,.6),transparent);opacity:0;transition:opacity 1.2s var(--ease) .3s;z-index:0;filter:blur(8px)}
+.gift.open .gb-glow{opacity:1}
+.gb-msg{position:absolute;left:0;right:0;top:0;text-align:center;font-family:var(--serif);font-style:italic;font-size:32px;color:var(--emerald);opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s;z-index:3}
+.gift.open .gb-msg{opacity:1;transform:none}
+.gift-hint{position:absolute;left:0;right:0;bottom:-30px;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.gift.open .gift-hint::after{content:" · tap again to close"}
+.gift.open .gift-hint{font-size:0}
+.gift.open .gift-hint::after{font-size:12px}
+@media (max-width:900px){.gift{justify-self:center;margin:20px auto 30px}}
+
+/* True 3D gift box */
+.gift{--W:300px;--H:190px;--D:200px;width:min(440px,90vw);height:380px;margin-bottom:0}
+.scene{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d}
+.box{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-16deg) rotateY(-30deg);animation:spinBox 16s ease-in-out infinite alternate}
+@keyframes spinBox{from{transform:rotateX(-16deg) rotateY(-34deg)}to{transform:rotateX(-12deg) rotateY(-14deg)}}
+.face{position:absolute;backface-visibility:visible;border:1px solid rgba(226,196,143,.18)}
+.f-front,.f-back{width:var(--W);height:var(--H);left:calc(var(--W) / -2);top:calc(var(--H) / -2);background:linear-gradient(165deg,#2E6A58,#1E4D40 55%,#163D33)}
+.f-front{transform:translateZ(calc(var(--D) / 2))}
+.f-back{transform:rotateY(180deg) translateZ(calc(var(--D) / 2));background:linear-gradient(165deg,#1E4D40,#123328)}
+.f-left,.f-right{width:var(--D);height:var(--H);left:calc(var(--D) / -2);top:calc(var(--H) / -2);background:linear-gradient(180deg,#1A4438,#0F2B24)}
+.f-right{transform:rotateY(90deg) translateZ(calc(var(--W) / 2))}
+.f-left{transform:rotateY(-90deg) translateZ(calc(var(--W) / 2))}
+.f-bottom{width:var(--W);height:var(--D);left:calc(var(--W) / -2);top:calc(var(--D) / -2);background:radial-gradient(circle,#E2C48F,#B8925A 70%);transform:rotateX(-90deg) translateZ(calc(var(--H) / 2));opacity:0;transition:opacity 1s var(--ease) .4s}
+.gift.open .f-bottom{opacity:1}
+.f-top{width:var(--W);height:var(--D);left:calc(var(--W) / -2);top:calc(var(--D) / -2);background:linear-gradient(160deg,#3B7A66,#1E4D40);transform:rotateX(90deg) translateZ(calc(var(--H) / 2));transition:transform 1.4s var(--ease-io)}
+.f-top::before,.f-top::after{content:"";position:absolute;background:linear-gradient(90deg,var(--gold),var(--gold-soft),var(--gold))}
+.f-top::before{left:50%;top:0;bottom:0;width:20px;margin-left:-10px}
+.f-top::after{top:50%;left:0;right:0;height:20px;margin-top:-10px;background:linear-gradient(180deg,var(--gold),var(--gold-soft),var(--gold))}
+.gift.open .f-top{transform:rotateX(90deg) translateZ(calc(var(--H) / 2 + 190px)) rotateZ(-4deg)}
+.gift:not(.open):hover .f-top{transform:rotateX(90deg) translateZ(calc(var(--H) / 2 + 14px))}
+.f-front::before{content:"";position:absolute;inset:14px;border:1px solid rgba(226,196,143,.55);pointer-events:none}
+.brand{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ivory);font-family:"Italiana",serif;font-size:66px;letter-spacing:.14em;line-height:.95;padding-left:.14em;text-shadow:0 2px 20px rgba(0,0,0,.25)}
+.brand em{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:38px;letter-spacing:.02em;color:var(--gold-soft);margin-top:6px;text-transform:none}
+.gb-msg{font-size:34px;top:-10px}
+.gift-hint{font-family:"Italiana",serif;font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:var(--emerald);bottom:-12px}
+.gift.open .gift-hint::after{content:none}
+.gift.open .gift-hint{font-size:14px}
+@media (max-width:900px){.gift{height:340px;justify-self:center}.gift .scene{top:48%}}
+
+/* Band */
+.band{overflow:hidden;background:var(--emerald);color:var(--ivory);padding:24px 0;position:relative;z-index:2;transform:rotate(-1.2deg);margin:40px -3vw -20px}
+.band-track{display:flex;width:max-content;will-change:transform}
+.band span{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,44px);white-space:nowrap;padding-right:40px}
+.band span i{font-style:normal;color:var(--gold-soft);margin-right:40px}
+
+/* Featured rows */
+#featured{padding:120px 0 90px;overflow:hidden}
+.feat-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:54px}
+.feat-head h2{font-size:clamp(44px,5.6vw,84px)}
+.feat-row{overflow:hidden;padding:10px 0}
+.feat-row+.feat-row{margin-top:18px}
+.feat-track{display:flex;gap:20px;width:max-content;animation:slideL 60s linear infinite}
+.feat-track.rev{animation-name:slideR}
+.feat-row:hover .feat-track{animation-play-state:paused}
+.feat-track figure{width:340px;flex:0 0 auto;aspect-ratio:4/3;border-radius:18px;overflow:hidden;position:relative;transition:transform .8s var(--ease)}
+.feat-track figure:hover{transform:translateY(-8px) rotate(-1deg)}
+.feat-track figure img{transition:transform 1.2s var(--ease)}
+.feat-track figure:hover img{transform:scale(1.08)}
+.feat-track figcaption{position:absolute;left:16px;bottom:14px;font-family:var(--serif);font-size:22px;color:var(--ivory);text-shadow:0 2px 14px rgba(0,0,0,.35);font-weight:600}
+@keyframes slideL{to{transform:translateX(-50%)}}
+@keyframes slideR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media (max-width:700px){.feat-track figure{width:240px}}
+
+/* Collections */
+#collections{background:var(--paper);overflow:hidden}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-head h2{font-size:clamp(44px,5.2vw,78px);margin-top:18px}
+.sec-head h2 em{color:var(--emerald)}
+.tabs{position:relative;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:0 auto 26px;width:max-content;max-width:100%;padding:6px;border:1px solid var(--line);border-radius:999px;background:var(--ivory)}
+.tab-pill{position:absolute;left:0;top:0;width:0;height:0;background:linear-gradient(120deg,var(--emerald),var(--emerald-2));border-radius:999px;transition:left .8s var(--ease),width .8s var(--ease),height .8s var(--ease),top .8s var(--ease);z-index:0;box-shadow:0 10px 24px -8px rgba(15,43,36,.5)}
+.tab{position:relative;z-index:1;background:none;border:0;padding:13px 24px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:color .6s var(--ease)}
+.tab[aria-selected="true"]{color:var(--ivory)}
+.panel-desc{text-align:center;color:var(--mute);margin-bottom:64px;font-size:18px;min-height:1.6em;transition:opacity .5s}
+.panel{display:none}
+.panel.on{display:block}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px 34px;perspective:1200px}
+.card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .9s var(--ease);transform-style:preserve-3d;animation:cardIn 1.1s var(--ease) backwards;animation-delay:calc(var(--i,0) * 90ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(44px) scale(.96)}}
+.frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:14px;background:var(--ivory);cursor:zoom-in;box-shadow:0 22px 50px -24px rgba(15,43,36,.45)}
+.frame img{transform:scale(1.06);transition:transform 1.2s var(--ease)}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-120%);pointer-events:none}
+.card:hover .frame::after{transform:translateX(120%);transition:transform 1.2s var(--ease)}
+.frame .idx{position:absolute;top:14px;left:14px;background:var(--ivory);color:var(--emerald);font-size:12px;font-weight:700;letter-spacing:.1em;padding:6px 12px;border-radius:999px;z-index:2}
+.frame .plus{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:22px;z-index:2;transform:scale(0) rotate(-90deg);transition:transform .7s var(--ease)}
+.card:hover .frame .plus{transform:scale(1) rotate(0)}
+.card .btn{margin-top:22px}
+@media (max-width:860px){.grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* Studio */
+#studio .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:start}
+#studio h2{font-size:clamp(44px,5vw,76px);margin-top:18px}
+#studio p.body{color:var(--mute);font-size:18px;margin-top:26px;max-width:48ch}
+.pillar{position:relative;padding:34px 0;display:grid;grid-template-columns:70px 1fr;gap:10px}
+.pillar::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease) var(--d,0s)}
+.pillars.in .pillar::before{transform:scaleX(1)}
+.pillar .num{font-family:var(--serif);font-size:44px;font-style:italic;color:var(--gold);line-height:1}
+.pillar h3{font-size:34px;margin-bottom:8px;transition:transform .8s var(--ease),color .6s}
+.pillar p{color:var(--mute);font-size:16px}
+.pillar:hover h3{transform:translateX(12px);color:var(--emerald)}
+@media (max-width:860px){#studio .wrap{grid-template-columns:1fr}}
+
+/* Process */
+#process{background:var(--emerald);color:var(--ivory);overflow:hidden}
+#process .eyebrow{color:var(--gold-soft)}
+#process h2{font-size:clamp(44px,5vw,78px);margin:18px 0 76px;color:var(--ivory)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:34px;padding-top:34px}
+.steps::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(247,243,236,.2)}
+.steps::after{content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:var(--gold-soft);transform:scaleX(0);transform-origin:left;transition:transform 2.6s var(--ease) .2s}
+.steps.in::after{transform:scaleX(1)}
+.step{position:relative}
+.step::before{content:"";position:absolute;top:-39px;left:0;width:11px;height:11px;border-radius:50%;background:var(--emerald);border:1px solid var(--gold-soft);transition:background .8s var(--ease) var(--d,0s)}
+.steps.in .step::before{background:var(--gold-soft)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--gold-soft)}
+.step h3{font-size:36px;margin:10px 0 12px}
+.step p{color:rgba(247,243,236,.78);font-size:15px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* Contact */
+#contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:start}
+#contact h2{font-size:clamp(44px,5vw,76px);margin-top:18px}
+.info{margin-top:42px;display:grid;gap:28px}
+.info small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px;font-weight:700}
+.info p,.info a{font-size:17px}
+.info a{background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 100%/0 1px;transition:background-size .6s var(--ease),color .4s}
+.info a:hover{background-size:100% 1px;color:var(--emerald)}
+.dir{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.map-card{margin-top:6px;border-radius:18px;background:var(--deep);color:var(--ivory);padding:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
+.map-card::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(226,196,143,.06) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(226,196,143,.06) 0 1px,transparent 1px 28px);pointer-events:none}
+.map-card .pin{position:relative;width:46px;height:46px;border-radius:50% 50% 50% 0;background:var(--gold);transform:rotate(-45deg);box-shadow:0 0 0 0 rgba(226,196,143,.6);animation:ring 2.4s infinite}
+.map-card .pin::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--deep)}
+@keyframes ring{70%{box-shadow:0 0 0 16px rgba(226,196,143,0)}100%{box-shadow:0 0 0 0 rgba(226,196,143,0)}}
+.map-card p{position:relative;font-size:15px;max-width:30ch;color:rgba(247,243,236,.85)}
+.map-card .btn{position:relative}
+.status{font-size:14px;color:var(--mute);display:flex;align-items:center;gap:8px}
+.status i{width:9px;height:9px;border-radius:50%;background:#b0aba0}
+.status.on i{background:#4E9A6E;animation:ping 2.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(78,154,110,0)}100%{box-shadow:0 0 0 0 rgba(78,154,110,0)}}
+.form-wrap{position:relative;border-radius:26px;padding:2px;background:conic-gradient(from var(--a,0deg),var(--gold),var(--emerald),var(--gold-soft),var(--gold));animation:spinBorder 8s linear infinite}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spinBorder{to{--a:360deg}}
+form{position:relative;background:var(--paper);border-radius:24px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.field{position:relative;display:flex;flex-direction:column}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:var(--mute);font-weight:600;transition:color .4s}
+.field input,.field select,.field textarea{border:0;border-bottom:1px solid var(--line);background:transparent;padding:12px 0;font-size:16px;outline:none;border-radius:0}
+.field textarea{min-height:100px;resize:vertical}
+.field::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,var(--gold),var(--emerald));transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.field:focus-within::after{transform:scaleX(1)}
+.field:focus-within label{color:var(--emerald)}
+.field.err::after{background:#B5523A;transform:scaleX(1)}
+.field .msg{font-size:12px;color:#B5523A;min-height:0;margin-top:4px}
+form .btn{grid-column:1/-1;justify-self:start;margin-top:8px;border:0;cursor:pointer}
+.dots::after{content:"";display:inline-block;width:1.2em;animation:dots 1.2s steps(4,end) infinite;overflow:hidden;vertical-align:bottom}
+@keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.thanks{grid-column:1/-1;display:none;align-items:center;gap:18px;font-family:var(--serif);font-size:28px;color:var(--emerald)}
+.thanks.show{display:flex;animation:rise .9s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.tick{width:58px;height:58px;flex:0 0 auto}
+.tick circle{fill:none;stroke:var(--emerald);stroke-width:1.5;stroke-dasharray:152;stroke-dashoffset:152;animation:draw 1s var(--ease) forwards}
+.tick path{fill:none;stroke:var(--gold);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .6s var(--ease) .7s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (max-width:860px){#contact .wrap{grid-template-columns:1fr}form{grid-template-columns:1fr;padding:28px}}
+
+/* Footer */
+footer{padding:70px 0 40px;background:var(--ivory);border-top:1px solid var(--line);overflow:hidden}
+.footer-word{font-family:var(--serif);font-weight:600;font-size:clamp(70px,16vw,240px);line-height:.9;letter-spacing:-.02em;color:var(--emerald);text-align:center;white-space:nowrap;margin-bottom:44px;user-select:none}
+.footer-word span{display:inline-block;transform:translateY(105%);opacity:0;transition:transform 1.3s var(--ease) var(--d,0s),opacity 1s var(--d,0s)}
+.footer-word.in span{transform:none;opacity:1}
+.footer-word em{font-style:italic;color:var(--gold)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--mute)}
+footer nav{display:flex;gap:24px}
+footer nav a:hover{color:var(--emerald)}
+.credit{width:100%;margin-top:24px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mute);letter-spacing:.04em}
+.credit b{color:var(--emerald);font-weight:700}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:300;background:rgba(10,24,20,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.lb.open{opacity:1;visibility:visible}
+.lb figure{text-align:center;max-width:90vw}
+.lb img{max-height:78vh;max-width:88vw;margin:0 auto;border-radius:12px;transform:scale(.92) translateY(14px);opacity:0;transition:transform 1s var(--ease),opacity .6s}
+.lb.open img{transform:none;opacity:1}
+.lb figcaption{color:var(--ivory);opacity:.75;font-size:15px;margin-top:18px;letter-spacing:.03em}
+.lb-btn{position:absolute;background:none;border:1px solid rgba(247,243,236,.3);color:var(--ivory);width:54px;height:54px;border-radius:50%;font-size:18px;cursor:pointer;transition:background .4s,border-color .4s,color .4s;display:grid;place-items:center}
+.lb-btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.lb-x{top:24px;right:24px}
+.lb-p{left:24px;top:50%;transform:translateY(-50%)}
+.lb-n{right:24px;top:50%;transform:translateY(-50%)}
+@media (max-width:600px){.lb-p,.lb-n{top:auto;bottom:24px;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .fade,.wd>span,.footer-word span{opacity:1;transform:none}
+  .loader{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader" aria-hidden="true"><div class="lw"><span>Kappa</span><em>Boxes</em></div></div>
+<div id="progress"></div>
+<div id="cur"></div>
+<div id="ring"><span>View</span></div>
+
+<header id="top">
+  <nav class="nav">
+    <a href="#hero" class="logo">Kappa<span>Boxes</span></a>
+    <ul class="links">
+      <li><a href="#featured">Looks</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact" class="pill magnetic">Get a quote</a></li>
+    </ul>
+    <a href="#contact" class="menu">Enquire</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero wrap" id="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="fade">
+    <span class="eyebrow">Custom boxes · Bengaluru</span>
+    <h1 data-words>Packaging that makes the <em class="shine">unboxing</em> the moment.</h1>
+    <p class="lead fade">Custom gift boxes for brands, festive seasons and the people who matter most, designed and printed with care from the first sketch to the final delivery.</p>
+    <div class="ctas fade">
+      <a href="#collections" class="btn magnetic"><span>Explore collections</span> <span class="arr">→</span></a>
+      <a href="#contact" class="btn ghost magnetic">Get a quote</a>
+    </div>
+    <div class="tags fade"><span>Corporate</span><span>Christmas</span><span>Hampers</span><span>Annual boxes</span></div>
+  </div>
+  <div class="gift" id="gift" role="button" tabindex="0" aria-label="Open the gift box" aria-pressed="false">
+    <span class="gb-glow"></span>
+    <span class="gb-msg">Made to be opened.</span>
+    <div class="scene">
+      <div class="box">
+        <div class="face f-front"><span class="brand">Kappa<em>Boxes</em></span></div>
+        <div class="face f-back"></div>
+        <div class="face f-left"></div>
+        <div class="face f-right"></div>
+        <div class="face f-bottom"></div>
+        <div class="face f-top"></div>
+      </div>
+    </div>
+    <span class="gift-hint">Tap to open</span>
+  </div>
+  <div class="arch-wrap" hidden aria-hidden="true">
+    <span class="orbit"><i></i></span>
+    <span class="chip c1">Made to order</span>
+    <span class="chip c2">Digital print</span>
+    <span class="chip c3">Bengaluru studio</span>
+  <div class="arch" id="arch">
+    <div class="arch-inner">
+      <div class="badge">
+        <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#circ">MADE IN BENGALURU · CUSTOM GIFT BOXES · </textPath></text></svg>
+        <b>K</b>
+      </div>
+      <div class="big-line">Made to be opened.</div>
+      <div class="small-line">Kappa Boxes</div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"><div class="band-track" id="band"></div></div>
+
+<!-- FEATURED (moving photos) -->
+<section id="featured">
+  <div class="wrap">
+    <div class="feat-head">
+      <div>
+        <span class="eyebrow fade">Recent looks</span>
+        <h2 data-words style="margin-top:18px">Made to be <em>opened.</em></h2>
+      </div>
+      <p class="lead fade" style="max-width:36ch">A glimpse of the boxes we design for brands, festive seasons and celebrations.</p>
+    </div>
+  </div>
+  <div class="feat-row">
+    <div class="feat-track">
+      <figure><img src="images/xmas-1.jpg" alt="Festive red box with candles"><figcaption>Festive red</figcaption></figure>
+      <figure><img src="images/corp-2.jpg" alt="Corporate box with black notebook"><figcaption>Corporate</figcaption></figure>
+      <figure><img src="images/annual-2.jpg" alt="Light blue bow box"><figcaption>Annual blue</figcaption></figure>
+      <figure><img src="images/hamp-4.jpg" alt="Purple hamper box with striped lid"><figcaption>Hamper</figcaption></figure>
+      <figure><img src="images/xmas-5.jpg" alt="Green gift box with teas"><figcaption>Festive green</figcaption></figure>
+      <figure><img src="images/corp-4.jpg" alt="Kraft corporate box with bottles"><figcaption>Kraft</figcaption></figure>
+      <figure><img src="images/annual-6.jpg" alt="Geometric printed boxes"><figcaption>Geometric</figcaption></figure>
+      <figure><img src="images/xmas-1.jpg" alt="Festive red box with candles"><figcaption>Festive red</figcaption></figure>
+      <figure><img src="images/corp-2.jpg" alt="Corporate box with black notebook"><figcaption>Corporate</figcaption></figure>
+      <figure><img src="images/annual-2.jpg" alt="Light blue bow box"><figcaption>Annual blue</figcaption></figure>
+      <figure><img src="images/hamp-4.jpg" alt="Purple hamper box with striped lid"><figcaption>Hamper</figcaption></figure>
+      <figure><img src="images/xmas-5.jpg" alt="Green gift box with teas"><figcaption>Festive green</figcaption></figure>
+      <figure><img src="images/corp-4.jpg" alt="Kraft corporate box with bottles"><figcaption>Kraft</figcaption></figure>
+      <figure><img src="images/annual-6.jpg" alt="Geometric printed boxes"><figcaption>Geometric</figcaption></figure>
+    </div>
+  </div>
+  <div class="feat-row">
+    <div class="feat-track rev">
+      <figure><img src="images/hamp-1.jpg" alt="Teal hamper box with floral insert"><figcaption>Floral teal</figcaption></figure>
+      <figure><img src="images/annual-5.jpg" alt="Navy box with gold interior"><figcaption>Gold interior</figcaption></figure>
+      <figure><img src="images/xmas-3.jpg" alt="Red patterned festive box"><figcaption>Festive red</figcaption></figure>
+      <figure><img src="images/corp-6.jpg" alt="Kraft box with candles"><figcaption>Kraft set</figcaption></figure>
+      <figure><img src="images/hamp-5.jpg" alt="Navy polka-dot hamper"><figcaption>Polka dot</figcaption></figure>
+      <figure><img src="images/annual-4.jpg" alt="Botanical print boxes"><figcaption>Botanical</figcaption></figure>
+      <figure><img src="images/xmas-6.jpg" alt="Maroon gift box with sweets"><figcaption>Maroon</figcaption></figure>
+      <figure><img src="images/hamp-1.jpg" alt="Teal hamper box with floral insert"><figcaption>Floral teal</figcaption></figure>
+      <figure><img src="images/annual-5.jpg" alt="Navy box with gold interior"><figcaption>Gold interior</figcaption></figure>
+      <figure><img src="images/xmas-3.jpg" alt="Red patterned festive box"><figcaption>Festive red</figcaption></figure>
+      <figure><img src="images/corp-6.jpg" alt="Kraft box with candles"><figcaption>Kraft set</figcaption></figure>
+      <figure><img src="images/hamp-5.jpg" alt="Navy polka-dot hamper"><figcaption>Polka dot</figcaption></figure>
+      <figure><img src="images/annual-4.jpg" alt="Botanical print boxes"><figcaption>Botanical</figcaption></figure>
+      <figure><img src="images/xmas-6.jpg" alt="Maroon gift box with sweets"><figcaption>Maroon</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow fade">Collections</span>
+      <h2 data-words>Four ways to give a <em>lasting</em> impression</h2>
+    </div>
+
+    <div class="tabs" id="tabs" role="tablist">
+      <span class="tab-pill" id="pill"></span>
+      <button class="tab" role="tab" aria-selected="true" data-tab="corp">Corporate gifts</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="xmas">Christmas</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="hamp">Gift hampers</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="annual">Annual boxes</button>
+    </div>
+    <p class="panel-desc" id="desc">Branded gift boxes for clients, partners and teams, with your logo and palette built in.</p>
+
+    <div class="panel on" data-panel="corp">
+      <div class="grid">
+        <article class="card"><div class="frame"><span class="idx">01</span><img src="images/corp-1.jpg" alt="Corporate gift box with notebook, towel and tumbler"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">02</span><img src="images/corp-2.jpg" alt="Corporate gift box with a black notebook and accessories"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">03</span><img src="images/corp-3.jpg" alt="Teal corporate gift box with ribbon and hamper items"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">04</span><img src="images/corp-4.jpg" alt="Kraft corporate box with a photo frame and bottles"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">05</span><img src="images/corp-5.jpg" alt="Pink corporate box with a journal and tumbler"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">06</span><img src="images/corp-6.jpg" alt="Kraft box with bottles, candles and a card"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Corporate gifts">Enquire now</a></article>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="xmas">
+      <div class="grid">
+        <article class="card"><div class="frame"><span class="idx">01</span><img src="images/xmas-1.jpg" alt="Red festive gift box with candles and a tree"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">02</span><img src="images/xmas-2.jpg" alt="Cream and red festive box with candles"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">03</span><img src="images/xmas-3.jpg" alt="Red patterned festive box with a tree and candles"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">04</span><img src="images/xmas-4.jpg" alt="New Year gift set with calendar block and candle"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">05</span><img src="images/xmas-5.jpg" alt="Green box with teas and a gift set on a peach background"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">06</span><img src="images/xmas-6.jpg" alt="Maroon gift box with sweets and flowers"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Christmas">Enquire now</a></article>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="hamp">
+      <div class="grid">
+        <article class="card"><div class="frame"><span class="idx">01</span><img src="images/hamp-1.jpg" alt="Teal hamper box with a floral insert"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">02</span><img src="images/hamp-2.jpg" alt="Coral background with a patterned gift box"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">03</span><img src="images/hamp-3.jpg" alt="Pink box with an ornate lid on a magenta background"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">04</span><img src="images/hamp-4.jpg" alt="Purple hamper box with a striped lid on lime"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">05</span><img src="images/hamp-5.jpg" alt="Navy polka-dot hamper with gold ribbon"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">06</span><img src="images/hamp-6.jpg" alt="Black hamper with pearl detail on yellow"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Gift hampers">Enquire now</a></article>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="annual">
+      <div class="grid">
+        <article class="card"><div class="frame"><span class="idx">01</span><img src="images/annual-1.jpg" alt="Patterned box on a red background"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">02</span><img src="images/annual-2.jpg" alt="Light blue box with a bow and matching smaller boxes"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">03</span><img src="images/annual-3.jpg" alt="White box with tissue and black ribbon"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">04</span><img src="images/annual-4.jpg" alt="Two botanical print boxes on a beige background"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">05</span><img src="images/annual-5.jpg" alt="Navy box with a gold interior"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+        <article class="card"><div class="frame"><span class="idx">06</span><img src="images/annual-6.jpg" alt="Bright geometric printed boxes on purple"><span class="plus">+</span></div><a class="btn small magnetic" href="#contact" data-pick="Annual boxes">Enquire now</a></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section id="studio">
+  <div class="wrap">
+    <div class="fade">
+      <span class="eyebrow">The studio</span>
+      <h2 data-words>Quietly precise, from the first brief to the <em>final box.</em></h2>
+      <p class="body">Kappa Boxes is a custom box maker in Bengaluru. We use digital printing to make a small run look as considered as a large launch, and we keep one person responsible for your order from start to finish.</p>
+    </div>
+    <div class="pillars" id="pillars">
+      <div class="pillar"><span class="num">01</span><div><h3>Agility</h3><p>Quick turnarounds and dependable dispatch, so your deadlines hold.</p></div></div>
+      <div class="pillar"><span class="num">02</span><div><h3>Scale</h3><p>From fifty boxes for a launch to a multi-city annual programme.</p></div></div>
+      <div class="pillar"><span class="num">03</span><div><h3>Personal care</h3><p>One point of contact who knows your brand, quantities and timelines.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <span class="eyebrow fade">How it works</span>
+    <h2 data-words>Four simple steps</h2>
+    <div class="steps" id="steps">
+      <div class="step" style="--d:0s"><div class="n">01</div><h3>Brief</h3><p>Tell us the occasion, the quantity and the date you need it.</p></div>
+      <div class="step" style="--d:.5s"><div class="n">02</div><h3>Design</h3><p>We shape the structure, artwork and finish with you.</p></div>
+      <div class="step" style="--d:1s"><div class="n">03</div><h3>Sample</h3><p>Approve a physical sample before any production starts.</p></div>
+      <div class="step" style="--d:1.5s"><div class="n">04</div><h3>Deliver</h3><p>Produced on schedule, packed and sent straight to you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="fade">
+      <span class="eyebrow">Get a quote</span>
+      <h2 data-words>Tell us what you are <em>packing.</em></h2>
+      <div class="info">
+        <div><small>Studio</small><p>22/2, Sri Venkateshwara Industrial Estate, Vigneshwara Nagar, Near Arunodaya English School, Vishwaneedam post, Sunkadakatte, Bengaluru 560091</p>
+          <div class="map-card" style="margin-top:16px">
+            <span class="pin" aria-hidden="true"></span>
+            <p>Visit the studio or get directions from wherever you are.</p>
+            <a class="btn small magnetic" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Kappa+Boxes+22%2F2+Sri+Venkateshwara+Industrial+Estate+Sunkadakatte+Bengaluru+560091"><span>Get directions</span> <span class="arr">→</span></a>
+          </div>
+          <div class="dir">
+            <a class="btn ghost small magnetic" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kappa+Boxes+Sunkadakatte+Bengaluru+560091">View on Google Maps</a>
+          </div>
+        </div>
+        <div><small>Email</small><a href="mailto:info@kappaboxes.com">info@kappaboxes.com</a></div>
+        <div><small>Phone</small><a href="tel:+918867719798">+91 8867719798</a></div>
+        <div><small>Hours</small><p>Monday to Saturday, 9:30 AM to 6:30 PM<br>Sunday closed</p>
+          <div class="status" id="status"><i></i><span>Checking hours</span></div></div>
+        <div><small>WhatsApp</small><a href="https://wa.me/918867719798?text=Hi%20Kappa%20Boxes%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noopener">Message us on WhatsApp</a></div>
+      </div>
+    </div>
+
+    <div class="form-wrap fade">
+    <form id="form" novalidate>
+      <div class="field"><label for="name">Name</label><input id="name" data-req="text" autocomplete="name"><div class="msg"></div></div>
+      <div class="field"><label for="company">Company</label><input id="company" autocomplete="organization"></div>
+      <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" data-req="phone" autocomplete="tel"><div class="msg"></div></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
+      <div class="field"><label for="collection">Collection</label>
+        <select id="collection">
+          <option>Corporate gifts</option><option>Christmas</option><option>Gift hampers</option><option>Annual boxes</option><option>Not sure yet</option>
+        </select></div>
+      <div class="field"><label for="qty">Quantity</label>
+        <select id="qty"><option>50 to 100</option><option>101 to 500</option><option>501 to 1000</option><option>1000+</option></select></div>
+      <div class="field full"><label for="msg">Timeline and details</label><textarea id="msg" data-req="msg"></textarea><div class="msg"></div></div>
+      <button class="btn magnetic" type="submit" id="submit"><span id="submitText">Send enquiry</span> <span class="arr">→</span></button>
+      <div class="thanks" id="thanks" role="status">
+        <svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27 L22 34 L37 18"/></svg>
+        <span>Thank you. We have your enquiry and will reply shortly.</span>
+      </div>
+    </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-word" id="footWord" aria-hidden="true">Kappa <em>Boxes</em></div>
+  <div class="wrap">
+    <span>© 2026 Kappa Boxes. Bengaluru.</span>
+    <nav><a href="#featured">Looks</a><a href="#collections">Collections</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+  </div>
+  <div class="wrap">
+    <div class="credit"><span>Created by <b>High Velocity</b></span><span>2026 · Kappa Boxes, Bengaluru</span></div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Product gallery">
+  <button class="lb-btn lb-x" id="lbX" aria-label="Close">✕</button>
+  <button class="lb-btn lb-p" id="lbP" aria-label="Previous">←</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-n" id="lbN" aria-label="Next">→</button>
+</div>
+
+<script>
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(pointer: fine)').matches && !reduce;
+
+  const loader = $('#loader');
+  setTimeout(() => loader.classList.add('done'), reduce ? 0 : 1800);
+  setTimeout(() => loader.classList.add('done'), 5000);
+
+  $$('[data-words]').forEach(el => {
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+    el.innerHTML = text.split(/\s+/).map((w, i) => {
+      const cls = /unboxing/i.test(w) ? ' class="shine"' : '';
+      return `<span class="wd" aria-hidden="true"><span${cls} style="--d:${(i * 0.07).toFixed(2)}s">${w}</span></span>`;
+    }).join(' ');
+  });
+
+  const fw = $('#footWord');
+  fw.innerHTML = [...fw.textContent.trim()].map((ch, i) => `<span style="--d:${(i * 0.04).toFixed(2)}s">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.18 });
+  $$('.fade,[data-words],#pillars,#steps,#footWord').forEach(el => io.observe(el));
+  $$('.pillar').forEach((p, i) => p.style.setProperty('--d', (i * 0.2).toFixed(2) + 's'));
+
+  const hdr = $('#top');
+  addEventListener('scroll', () => hdr.classList.toggle('solid', scrollY > 40), { passive: true });
+
+  if (fine) {
+    const cur = $('#cur'), ring = $('#ring');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+    addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; cur.style.transform = `translate3d(${mx}px,${my}px,0)`; });
+    (function follow() {
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = `translate3d(${rx}px,${ry}px,0)`;
+      requestAnimationFrame(follow);
+    })();
+    document.addEventListener('pointerover', e => {
+      const el = e.target;
+      document.body.classList.toggle('view', !!el.closest('.frame'));
+      document.body.classList.toggle('hov', !el.closest('.frame') && !!el.closest('a,button,select,input,textarea'));
+    });
+    $$('.magnetic').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.transform = `translate3d(${(e.clientX - r.left - r.width / 2) * 0.28}px,${(e.clientY - r.top - r.height / 2) * 0.4}px,0)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+    $$('.card').forEach(card => {
+      const img = $('img', card);
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-6px)`;
+        img.style.transform = `scale(1.12) translate3d(${(-px * 16).toFixed(1)}px,${(-py * 16).toFixed(1)}px,0)`;
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; img.style.transform = ''; });
+    });
+  }
+
+  const pill = $('#pill');
+  const tabs = $$('.tab');
+  const descs = {
+    corp: 'Branded gift boxes for clients, partners and teams, with your logo and palette built in.',
+    xmas: 'Festive editions with seasonal finishes, made to feel like the highlight of the season.',
+    hamp: 'Curated hampers with custom inserts and ribbon, tailored to the occasion.',
+    annual: 'Year-end and anniversary boxes produced in planned batches, so every recipient gets the same finish.'
+  };
+  const placePill = t => {
+    pill.style.left = t.offsetLeft + 'px';
+    pill.style.top = t.offsetTop + 'px';
+    pill.style.width = t.offsetWidth + 'px';
+    pill.style.height = t.offsetHeight + 'px';
+  };
+  $$('.panel').forEach(panel => $$('.card', panel).forEach((c, i) => c.style.setProperty('--i', i)));
+  const current = () => tabs.find(t => t.getAttribute('aria-selected') === 'true');
+  if (document.fonts) document.fonts.ready.then(() => placePill(current()));
+  addEventListener('load', () => placePill(current()));
+  addEventListener('resize', () => placePill(current()));
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    placePill(t);
+    $$('.panel').forEach(p => p.classList.toggle('on', p.dataset.panel === t.dataset.tab));
+    const d = $('#desc');
+    d.style.opacity = 0;
+    setTimeout(() => { d.textContent = descs[t.dataset.tab]; d.style.opacity = 1; }, 260);
+  }));
+
+  const sel = $('#collection');
+  $$('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    const opt = [...sel.options].find(o => o.value === b.dataset.pick);
+    if (opt) sel.value = b.dataset.pick;
+  }));
+
+  const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+  let list = [], idx = 0;
+  const fill = im => { lbImg.src = im.getAttribute('src'); lbImg.alt = im.alt; lbCap.textContent = im.alt; };
+  const openLb = frameImg => {
+    list = $$('.frame img', frameImg.closest('.panel'));
+    idx = list.indexOf(frameImg);
+    fill(frameImg);
+    lb.classList.add('open');
+    document.body.classList.add('locked');
+  };
+  const closeLb = () => { lb.classList.remove('open'); document.body.classList.remove('locked'); };
+  const step = d => { idx = (idx + d + list.length) % list.length; fill(list[idx]); };
+  $$('.frame').forEach(f => f.addEventListener('click', () => openLb($('img', f))));
+  $('#lbX').addEventListener('click', closeLb);
+  $('#lbP').addEventListener('click', () => step(-1));
+  $('#lbN').addEventListener('click', () => step(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+
+  const band = $('#band');
+  const items = ['Corporate gifts', 'Christmas editions', 'Gift hampers', 'Annual boxes', 'Made in Bengaluru'];
+  const bandHTML = items.map(t => `<span>${t}<i>✦</i></span>`).join('');
+  band.innerHTML = bandHTML + bandHTML + bandHTML + bandHTML;
+  let bandW = 0, bx = 0, speed = 0.8, lastY = scrollY;
+  const measure = () => { bandW = band.scrollWidth / 4; };
+  addEventListener('load', measure); addEventListener('resize', measure); measure();
+
+  const form = $('#form');
+  const submitBtn = $('#submit'), submitText = $('#submitText');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    $$('[data-req]', form).forEach(el => {
+      const v = el.value.trim();
+      let good = v.length > 0;
+      if (el.dataset.req === 'phone') good = /^[+0-9\s-]{8,}$/.test(v);
+      if (el.dataset.req === 'msg') good = v.length >= 10;
+      const field = el.closest('.field');
+      field.classList.toggle('err', !good);
+      field.querySelector('.msg').textContent = good ? '' : (el.dataset.req === 'phone' ? 'Enter a valid phone number' : el.dataset.req === 'msg' ? 'Share a few details so we can help' : 'Required');
+      ok = ok && good;
+    });
+    if (!ok) return;
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    submitText.textContent = 'Sending';
+    submitText.classList.add('dots');
+    setTimeout(() => {
+      $$('.field', form).forEach(f => f.style.display = 'none');
+      submitBtn.style.display = 'none';
+      $('#thanks').classList.add('show');
+    }, 1200);
+  });
+
+  const st = $('#status');
+  function openStatus() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    const wd = parts.find(p => p.type === 'weekday').value;
+    const h = parseInt(parts.find(p => p.type === 'hour').value, 10) % 24;
+    const m = parseInt(parts.find(p => p.type === 'minute').value, 10);
+    const mins = h * 60 + m;
+    const open = wd !== 'Sun' && mins >= 570 && mins < 1110;
+    st.classList.toggle('on', open);
+    st.querySelector('span').textContent = open ? 'Open now' : 'Closed now, opens Mon 9:30 AM';
+  }
+  openStatus(); setInterval(openStatus, 60000);
+
+  const gift = $('#gift');
+  if (gift) {
+    const toggle = () => {
+      const open = gift.classList.toggle('open');
+      gift.setAttribute('aria-pressed', String(open));
+    };
+    gift.addEventListener('click', toggle);
+    gift.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  }
+
+  const arch = $('#arch');
+  if (fine && arch) {
+    addEventListener('pointermove', e => {
+      const x = e.clientX / innerWidth - 0.5;
+      const y = e.clientY / innerHeight - 0.5;
+      arch.style.transform = `perspective(1200px) rotateY(${(x * 14).toFixed(2)}deg) rotateX(${(-y * 10).toFixed(2)}deg)`;
+    });
+  }
+
+  const prog = $('#progress');
+  function frame() {
+    const y = scrollY;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = `scaleX(${(max > 0 ? y / max : 0).toFixed(4)})`;
+    const dy = y - lastY; lastY = y;
+    const dir = dy < 0 ? -1 : 1;
+    speed += ((0.8 + Math.min(Math.abs(dy) * 0.9, 40)) - speed) * 0.12;
+    bx -= speed * dir;
+    if (bandW) {
+      if (bx <= -bandW * 2) bx += bandW;
+      if (bx >= 0) bx -= bandW;
+    }
+    band.style.transform = `translate3d(${bx.toFixed(2)}px,0,0)`;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
